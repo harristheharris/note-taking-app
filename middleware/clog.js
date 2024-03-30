@@ -1,8 +1,11 @@
 // Custom middleware that logs out the type and path of each request to the server
-// we are just console logging our request. seems very helpful so we took it from the min project
+// we are just console logging our request. seems very helpful so we took it from the mini project
+
 const clog = (req, res, next) => {
+
     //loooool we are setting colors in the console. very based
     const fgCyan = '\x1b[36m';
+
     //refresher on switch
     //switch evals once. It goes through each case looking for a match. The first case that matches it, that block of code will run
     //thefore
@@ -27,6 +30,8 @@ const clog = (req, res, next) => {
         console.log(`📙${fgCyan}${req.method} request to ${req.path}`);
     }
   
+    //this executes the next middlewar function. 
+    //I THINK that if there are no other middleware fucntions then it stops. However if no next() function is present then it is left hanging
     next();
   };
   
