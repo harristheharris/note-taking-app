@@ -1,0 +1,18 @@
+{
+    "app": {
+        "title": "note-taking-app",
+        "system": "heroku",
+        "id": "not-another-note-app"
+    },
+    "logging": {
+        "minLevel": "information"
+    },
+
+    "ws": {
+        "api": {
+            "rootPath": ""
+
+        }
+    }
+
+}
