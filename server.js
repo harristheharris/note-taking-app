@@ -67,6 +67,7 @@ app.get('*', (req, res) => {
 //the function that creates the new notes submitted by the user
 function createAnotherNote(reqBody, notesArray){
     const aNote = reqBody;
+    console.log("in create note");
 
     //if aNote is NOT and array then make it one
     if(!Array.isArray(notesArray)) {
@@ -78,7 +79,7 @@ function createAnotherNote(reqBody, notesArray){
         notesArray.push(0);
     }
 
-    body.id = notesArray[0];
+    reqBody.id = notesArray[0];
     notesArray[0]++
 
     notesArray.push(aNote);
