@@ -7,25 +7,25 @@ const path = require('path');
 const fs = require('fs');
 const theNotes = require('./db/db.json')
 //all our fetch request are coming from our index.js so we are importing that
-const api = require('./public/assets/js/index.js');
-//we stole this cLog from our mini project. It allows us to see what our request
+// const api = require('./public/assets/js/index.js');
+// //we stole this cLog from our mini project. It allows us to see what our request
 const { clog } = require('./middleware/clog');
 const { requestTime } = require('./middleware/requestTime');
 const { log } = require('console');
 
+
+//setting express to a var
+const app = express();
 //setting our our port to 3001
 //the process.env is an object that contains all of the environment vars that are currently set for our process
 // we add the '||' to specify that if no environmental vars are set, then the default is 3001
 // set environmental var OR 3001
 //heroku stuff
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-app.listen(port);
+const PORT = process.env.PORT || 3001;
 
-//setting express to a var
-const app = express();
+
+
+
 //the use() function is used to mount the middleware functions at a specified path
 //app.use() load the middleware function and the specifies the function to be used
 app.use(clog);
@@ -40,7 +40,7 @@ app.use(express.json());
 //the 'extended: true' returns middleware that only parses JSON which is all we need for now I THINK
 app.use(express.urlencoded({ extended: true}));
 
-app.use('/api' , api);
+//app.use('/api' , api);
 
 app.use(express.static('public'));
 
@@ -102,7 +102,7 @@ app.post('/api/notes' , (req, res) => {
 })
 
 
-app.listen(port , () => {
-    console.log(`Server running on http://localhost:${port}`)
+app.listen(PORT , () => {
+    console.log(`Server running on http://localhost:${PORT}`)
 })
 
